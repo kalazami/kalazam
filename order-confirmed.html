@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказ оформлен - Магазин мягких игрушек "Мир детства"</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .order-confirmed {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin: 40px 0;
+        }
+        
+        .success-icon {
+            font-size: 80px;
+            color: #4caf50;
+            margin-bottom: 20px;
+            animation: scaleIn 0.5s;
+        }
+        
+        .order-confirmed h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 15px;
+            animation: fadeIn 0.5s 0.2s both;
+        }
+        
+        .order-confirmed p {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 30px;
+            animation: fadeIn 0.5s 0.4s both;
+        }
+        
+        .order-details {
+            max-width: 400px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            animation: fadeIn 0.5s 0.6s both;
+        }
+        
+        .order-details h3 {
+            color: #d81b60;
+            margin-bottom: 15px;
+        }
+        
+        .order-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .order-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            animation: fadeIn 0.5s 0.8s both;
+        }
+        
+        .order-actions .btn {
+            padding: 12px 30px;
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-heart"></i>
+                    <h1>Мир детства</h1>
+                    <p>Магазин мягких игрушек</p>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                        <li><a href="catalog.html"><i class="fas fa-th-list"></i> Каталог</a></li>
+                        <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <hr class="separator">
+
+    <main class="container">
+        <div class="order-confirmed">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1>Заказ успешно оформлен!</h1>
+            <p>Спасибо за покупку в нашем магазине</p>
+            
+            <div class="order-details">
+                <h3>Номер вашего заказа</h3>
+                <div class="order-number" id="orderNumber"></div>
+                <p style="margin-top: 15px;">Мы отправили подтверждение на ваш email<br>и свяжемся с вами в ближайшее время</p>
+            </div>
+            
+            <div class="order-actions">
+                <a href="catalog.html" class="btn">Продолжить покупки</a>
+                <a href="index.html" class="btn" style="background: #ffb6c1; color: #333;">На главную</a>
+            </div>
+        </div>
+    </main>
+
+    <hr class="separator">
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Магазин "Мир детства"</h3>
+                    <p>Мы дарим радость детям и взрослым с 2010 года.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Игрушечная, д. 15</p>
+                    <p><i class="fas fa-phone"></i> +7 (495) 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> info@mir-detstva.ru</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Меню</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="cart.html">Корзина</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p><i class="far fa-copyright"></i> 2023 Магазин мягких игрушек "Мир детства". Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Генерация номера заказа из localStorage
+        const lastOrder = JSON.parse(localStorage.getItem('lastOrder'));
+        document.getElementById('orderNumber').textContent = lastOrder ? lastOrder.orderNumber : '#' + Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+    </script>
+    <script src="cart.js"></script>
+</body>
+</html>
